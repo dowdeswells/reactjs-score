@@ -4,7 +4,7 @@ const EditTeams = (props) => {
 
     const [teams, setTeams] = useState([]);
     useEffect(() => {
-        setTeams([...props.teams]);
+        setTeams(props.teams.map((t, i) => t.name));
     }, [props.teams]);
 
     const copyTeam = (i, e) => {
