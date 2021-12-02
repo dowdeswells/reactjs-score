@@ -9,6 +9,10 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+- name: WebProjectRoot
+  value: src/MyProjectRootFolder
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -19,3 +23,12 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+  
+
+- task: AzureStaticWebApp@0
+  inputs:
+      app_location: "/" 
+      api_location: ""
+      output_location: "build"
+  env:
+      azure_static_web_apps_api_token: $(static_website_token)
