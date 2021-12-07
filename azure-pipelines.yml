@@ -17,6 +17,16 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 steps:
+
+- task: AzurePowerShell@5
+  inputs:
+    azureSubscription: $(azureSubscription)
+    ScriptType: 'InlineScript'
+    Inline: |
+      # You can write your azure powershell scripts inline here. 
+      # You can also pass predefined and custom variables to this script using arguments
+      ls -x
+
 - task: NodeTool@0
   displayName: 'Install Node.js'
   inputs:
@@ -26,13 +36,6 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
-  
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: $(azureSubscription)
-    scriptType: 'ps'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'ls -x'
 
 - task: AzureStaticWebApp@0
   inputs:
