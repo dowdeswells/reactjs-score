@@ -10,11 +10,18 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+- group: MyGlobalGroup
+- name: someVar
+  value: $[variables.Something]
   # Azure service connection established during pipeline creation
-  azureSubscription: Azure subscription 1(95a9b8d7-74d7-41e6-bea8-91fcfc7e0bf4)
-  appName: app-si-200
+- name: azureSubscription 
+  value: Azure subscription 1(95a9b8d7-74d7-41e6-bea8-91fcfc7e0bf4)
+- name: appName
+  value: app-si-200
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+- name: vmImageName
+  value: 'ubuntu-latest'   
+
 
 steps:
 
@@ -27,6 +34,7 @@ steps:
       # You can write your azure powershell scripts inline here. 
       # You can also pass predefined and custom variables to this script using arguments
       ls -x
+      echo "someVar=$(someVar)"
 
 - task: NodeTool@0
   displayName: 'Install Node.js'
