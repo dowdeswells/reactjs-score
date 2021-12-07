@@ -11,8 +11,8 @@ pool:
 
 variables:
   # Azure service connection established during pipeline creation
-  azureSubscription: 'Azure subscription 1(95a9b8d7-74d7-41e6-bea8-91fcfc7e0bf4)'
-  appName: <Name of the Function app>
+  azureSubscription: Azure subscription 1(95a9b8d7-74d7-41e6-bea8-91fcfc7e0bf4)
+  appName: app-si-200
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
@@ -22,7 +22,6 @@ steps:
   displayName: 'Install Node.js'
   inputs:
     versionSpec: '10.x'
-  
 
 - script: |
     npm install
