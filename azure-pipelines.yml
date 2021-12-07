@@ -10,20 +10,31 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-- name: WebProjectRoot
-  value: src/MyProjectRootFolder
+  # Azure service connection established during pipeline creation
+  azureSubscription: 'Azure subscription 1(95a9b8d7-74d7-41e6-bea8-91fcfc7e0bf4)'
+  appName: <Name of the Function app>
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
 
 steps:
 - task: NodeTool@0
+  displayName: 'Install Node.js'
   inputs:
     versionSpec: '10.x'
-  displayName: 'Install Node.js'
+  
 
 - script: |
     npm install
     npm run build
   displayName: 'npm install and build'
   
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: azureSubscription
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'ls -x'
 
 - task: AzureStaticWebApp@0
   inputs:
