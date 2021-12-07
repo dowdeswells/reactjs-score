@@ -29,7 +29,7 @@ steps:
   
 - task: AzureCLI@2
   inputs:
-    azureSubscription: azureSubscription
+    azureSubscription: $(azureSubscription)
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
     inlineScript: 'ls -x'
