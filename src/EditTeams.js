@@ -24,7 +24,7 @@ const EditTeams = (props) => {
 
     return (
         <>
-            <button onClick={addTeam}>New Team</button>
+            <button onClick={addTeam}>Add Team</button>
             <button onClick={onOk}>Ok</button>
             <button onClick={props.onCancel}>Cancel</button>
             {teams.map((s, index) => (
